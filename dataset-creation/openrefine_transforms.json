@@ -1,0 +1,2820 @@
+[
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "idb_title",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "title",
+    "columnInsertIndex": 3,
+    "description": "Create column title at index 3 based on column idb_title using expression grel:value"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "title",
+    "index": 2,
+    "description": "Move column title to position 2"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "title",
+    "index": 1,
+    "description": "Move column title to position 1"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "idb_author",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "author",
+    "columnInsertIndex": 6,
+    "description": "Create column author at index 6 based on column idb_author using expression grel:value"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "author",
+    "index": 5,
+    "description": "Move column author to position 5"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "author",
+    "index": 4,
+    "description": "Move column author to position 4"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "author",
+    "newColumnName": "first_author",
+    "description": "Rename column author to first_author"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "ol_contributor",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "illustrator",
+    "columnInsertIndex": 8,
+    "description": "Create column illustrator at index 8 based on column ol_contributor using expression grel:value"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "illustrator",
+    "index": 7,
+    "description": "Move column illustrator to position 7"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "illustrator",
+    "index": 6,
+    "description": "Move column illustrator to position 6"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "illustrator",
+    "index": 5,
+    "description": "Move column illustrator to position 5"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "ol_author",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "other_authors",
+    "columnInsertIndex": 7,
+    "description": "Create column other_authors at index 7 based on column ol_author using expression grel:value"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "other_authors",
+    "index": 6,
+    "description": "Move column other_authors to position 6"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "jython:if value is None:\n    return value\nelse:\n    return value.rstrip(', ill.').rstrip(' (Illustrator)')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column illustrator using expression jython:if value is None:\n    return value\nelse:\n    return value.rstrip(', ill.').rstrip(' (Illustrator)')"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "other_authors",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "['Juliet David', 'Helen Prole']"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column other_authors"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Sarah Fletcher"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Fletcher, Sarah"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Patrice Banks Lee"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lee, Patrice Banks"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Jane Dippold"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Dippold, Jane"
+      }
+    ],
+    "description": "Mass edit cells in column illustrator"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "jython:if value == '[]':\n    return None\nelse:\n    return value",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column first_author using expression jython:if value == '[]':\n    return None\nelse:\n    return value"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "jython:if value:\n    return value.rstrip(' i')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column illustrator using expression jython:if value:\n    return value.rstrip(' i')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "jython:if value:\n    return value.rstrip(',').rstrip()",
+    "onError": "keep-original",
+    "repeat": true,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column illustrator using expression jython:if value:\n    return value.rstrip(',').rstrip()"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Ken Ham"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Ham, Ken"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "other_authors",
+    "expression": "grel:''",
+    "onError": "set-to-blank",
+    "newColumnName": "other_illustrators",
+    "columnInsertIndex": 7,
+    "description": "Create column other_illustrators at index 7 based on column other_authors using expression grel:''"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Garry Colby"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Colby, Garry"
+      }
+    ],
+    "description": "Mass edit cells in column illustrator"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "['Manz Simon, Mary', 'Simon, Mary Manz']"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Manz Simon, Mary"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mary Manz Simon"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Manz Simon, Mary"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "['Bible Society, American', 'American Bible Society', 'American Bible Society']"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "American Bible Society"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Sally Lloyd-Jones"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lloyd-Jones, Sally"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Thomas Nelson"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Nelson, Thomas"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Phil Smouse"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Smouse, Phil"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Helen Cann"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Cann, Helen"
+      }
+    ],
+    "description": "Mass edit cells in column illustrator"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Parry, Alan, 1940-"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Parry, Alan"
+      }
+    ],
+    "description": "Mass edit cells in column illustrator"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Lawrence G. Lovasik"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lovasik, Lawrence G."
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Daniel Partner"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Partner, Daniel"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "E. B. R. Hirsh"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Hirsh, E. B. R."
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Carolyn Larsen"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Larsen, Carolyn"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Kenneth N. Taylor"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Taylor, Kenneth N."
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Fred Apps"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Apps, Fred"
+      }
+    ],
+    "description": "Mass edit cells in column illustrator"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mary Theola"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Theola, Mary"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Sandol Stoddard"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Stoddard, Sandol"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Elsie Egermeier"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Egermeier, Elsie"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Jeff Anderson~Mike Maddox"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Anderson, Jeff"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Young Shin Lee"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lee, Young Shin"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Iva Hoth"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Hoth, Iva"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Anne De Graaf"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "de Graaf, Anne"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Patti Thisted Arthur"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Arthur, Patti Thisted"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Michael Tickne"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tickner, Michael"
+      }
+    ],
+    "description": "Mass edit cells in column illustrator"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "The De Villiers Family"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "de Villiers Family"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Jenifer Schneide"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Schneide, Jenifer"
+      }
+    ],
+    "description": "Mass edit cells in column illustrator"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Dave Strehler"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Strehler, Dave"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Madeleine L'Engle"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "L'Engle, Madeleine"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Preston, Jeff, 1958-"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Preston, Jeff"
+      }
+    ],
+    "description": "Mass edit cells in column illustrator"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "S. Parkes Cadman"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Cadman, S. Parkes"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mary Hollingsworth"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Hollingsworth, Mary"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Pierre Thivollier"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Thivollier, Pierre"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Stephen Elkins"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Elkins, Stephen"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Mack Thomas"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Thomas, Mack"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "first_author",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Regina Brundidge / ICB International Childrens' Bible version"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Brundidge, Regina"
+      }
+    ],
+    "description": "Mass edit cells in column first_author"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "illustrator",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Converse, Jame"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Converse, James"
+      }
+    ],
+    "description": "Mass edit cells in column illustrator"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "ol_location",
+    "expression": "grel:value",
+    "onError": "set-to-blank",
+    "newColumnName": "location",
+    "columnInsertIndex": 15,
+    "description": "Create column location at index 15 based on column ol_location using expression grel:value"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "location",
+    "index": 14,
+    "description": "Move column location to position 14"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Elgin, Ill",
+          "Elgin, IL",
+          "Elgin, Il"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Elgin, IL"
+      },
+      {
+        "from": [
+          "Wheaton, Ill",
+          "Wheaton, IL"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Wheaton, IL"
+      },
+      {
+        "from": [
+          "Sisters, Or",
+          "Sisters, Ore"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sisters, OR"
+      },
+      {
+        "from": [
+          "St. Louis, MO",
+          "St. Louis, Mo"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "St. Louis, MO"
+      },
+      {
+        "from": [
+          "Scottdale, Pa",
+          "Scottsdale, Pa"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Scottdale, PA"
+      },
+      {
+        "from": [
+          "Lincolnwood, IL",
+          "Lincolnwood, Ill"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lincolnwood, IL"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Minneapolis, MN",
+          "Minneapolis",
+          "Minneapolis, Minn"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Minneapolis, MN"
+      },
+      {
+        "from": [
+          "Colorado Springs, Colo",
+          "Colorado Springs, CO"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Colorado Springs"
+      },
+      {
+        "from": [
+          "New York",
+          "[New York]"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "New York"
+      },
+      {
+        "from": [
+          "Grand Rapids, Mich",
+          "Grand Rapids, Michigan"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Grand Rapids, MI"
+      },
+      {
+        "from": [
+          "Minneapolis, MN",
+          "Minneapolis, Minn"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Minneapolis"
+      },
+      {
+        "from": [
+          "Minneapolis",
+          "Minneapolis, Minn"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Minneapolis"
+      },
+      {
+        "from": [
+          "Cincinnati, OH",
+          "Cincinnati, Ohio"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Cincinnati, OH"
+      },
+      {
+        "from": [
+          "Nashville, Tenn",
+          "Nashville, Tennessee"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Nashville, TN"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Wheaton, IL",
+          "['Wheaton, IL', 'Wheaton, IL']"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Wheaton, IL"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Nashville",
+          "Nashville, TN"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Nashville, TN"
+      },
+      {
+        "from": [
+          "St. Louis, MO",
+          "St. Louis"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "St. Louis, MO"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Carol Stream, Ill"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Carol Stream, IL"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "DFW, TX"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Dallas"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Garden City, N.Y"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Garden City, NY"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Eugene, Or"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Eugene, OR"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Minneapolis"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Minneapolis, MN"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Racine, Wis"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Racine, WI"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Totowa, N.J"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Totowa, NJ"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Tulsa, Okla"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tulsa, OK"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Uhrichsville, Ohio"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Uhrichsville, OH"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "[Westport, Conn.]"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Westport, CT"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "['Oxford, [Eng.]', 'New York']"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "New York"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "['London', 'New York']"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "New York"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "[United States"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "location",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "['Eastbourne [England]', '[S.l.]']"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Eastbourne (UK)"
+      }
+    ],
+    "description": "Mass edit cells in column location"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "ol_year",
+    "expression": "join ([coalesce(cells['ol_year'].value,''),coalesce(cells['idb_year'].value,'')],',')",
+    "onError": "keep-original",
+    "newColumnName": "year",
+    "columnInsertIndex": 17,
+    "description": "Create column year at index 17 based on column ol_year using expression join ([coalesce(cells['ol_year'].value,''),coalesce(cells['idb_year'].value,'')],',')"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "year",
+    "index": 16,
+    "description": "Move column year to position 16"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "year",
+    "expression": "jython:if not value:\n   return ''\n\ny1, y2 = value.split(',')\nif y1 == y2:\n   return y1\nreturn value",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column year using expression jython:if not value:\n   return ''\n\ny1, y2 = value.split(',')\nif y1 == y2:\n   return y1\nreturn value"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "year",
+    "expression": "jython:return value.rstrip(',')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column year using expression jython:return value.rstrip(',')"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "ol_publisher",
+    "expression": "jython:return value",
+    "onError": "set-to-blank",
+    "newColumnName": "ol_publisher_clustered",
+    "columnInsertIndex": 13,
+    "description": "Create column ol_publisher_clustered at index 13 based on column ol_publisher using expression jython:return value"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "idb_publisher",
+    "expression": "jython:return value",
+    "onError": "set-to-blank",
+    "newColumnName": "idb_publisher_clustered",
+    "columnInsertIndex": 15,
+    "description": "Create column idb_publisher_clustered at index 15 based on column idb_publisher using expression jython:return value"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "ol_publisher_clustered",
+    "index": 12,
+    "description": "Move column ol_publisher_clustered to position 12"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "idb_publisher_clustered",
+    "index": 14,
+    "description": "Move column idb_publisher_clustered to position 14"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "idb_publisher_clustered",
+    "index": 13,
+    "description": "Move column idb_publisher_clustered to position 13"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ol_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Zonderkidz",
+          "ZonderKidz",
+          "Zonder Kidz"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Zonderkidz"
+      },
+      {
+        "from": [
+          "Lion Hudson PLC",
+          "Lion Hudson Plc",
+          "Lion Hudson plc"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lion Hudson PLC"
+      },
+      {
+        "from": [
+          "Thomas Nelson",
+          "Tommy Nelson"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Thomas Nelson"
+      },
+      {
+        "from": [
+          "David C. Cook",
+          "David Cook"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "David Cook"
+      },
+      {
+        "from": [
+          "Concordia Pub. House",
+          "Concordia Pub House"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Concordia Pub House"
+      },
+      {
+        "from": [
+          "A Golden Book",
+          "Golden Books"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Golden Books"
+      },
+      {
+        "from": [
+          "Water Brook Press",
+          "WaterBrook Press"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "WaterBrook Press"
+      }
+    ],
+    "description": "Mass edit cells in column ol_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ol_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Publications International",
+          "Publications International Ltd"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Publications International"
+      }
+    ],
+    "description": "Mass edit cells in column ol_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ol_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Christian Art Gifts",
+          "['Christian Art Kids', 'Christian Art Gifts Inc']"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Christian Art Gifts"
+      },
+      {
+        "from": [
+          "Chariot Victor Pub.",
+          "Chariot Victor Publishing"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Chariot Victor Pub"
+      },
+      {
+        "from": [
+          "Zondervan Pub.",
+          "Zondervan Pub. House"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Zondervan"
+      },
+      {
+        "from": [
+          "Standard Publishing Company",
+          "Standard Pub."
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Standard Publishing Company"
+      },
+      {
+        "from": [
+          "Baker Book House",
+          "Baker Books"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Baker Book House"
+      },
+      {
+        "from": [
+          "Catholic Book Pub.",
+          "Catholic Book Publishing Company"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Catholic Book Pub"
+      }
+    ],
+    "description": "Mass edit cells in column ol_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ol_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Concordia Pub House",
+          "Concordia Publishing House"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Concordia Pub House"
+      },
+      {
+        "from": [
+          "Paradice Press Inc.",
+          "Paradise Press]"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Paradise Press"
+      },
+      {
+        "from": [
+          "Gold 'n' Honey",
+          "Gold 'n' Honey Books"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Gold 'n' Honey"
+      }
+    ],
+    "description": "Mass edit cells in column ol_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "idb_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Paradise Press Inc.",
+          "Paradise Press, Inc."
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Paradise Press"
+      },
+      {
+        "from": [
+          "Zonderkidz",
+          "ZonderKidz"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Zonderkidz"
+      },
+      {
+        "from": [
+          "Thomas Nelson Inc",
+          "Nelson, Thomas, Inc."
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Thomas Nelson"
+      },
+      {
+        "from": [
+          "Concordia Pub House",
+          "Concordia Pub. House"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Concordia Pub House"
+      }
+    ],
+    "description": "Mass edit cells in column idb_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "idb_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Lion Children's Bks",
+          "Lion Children's Books"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lion Children's Books"
+      },
+      {
+        "from": [
+          "Catholic Book Publishing Corp",
+          "Catholic Book Publishing Company"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Catholic Book Pub"
+      },
+      {
+        "from": [
+          "Publications International",
+          "Publications International Ltd"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Publications International"
+      },
+      {
+        "from": [
+          "Tyndale House Publishers, Inc.",
+          "Tyndale House Publishers"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tyndale House"
+      }
+    ],
+    "description": "Mass edit cells in column idb_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "idb_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Tyndale House",
+          "Tyndale House Pub"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tyndale House"
+      }
+    ],
+    "description": "Mass edit cells in column idb_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "idb_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Concordia Pub House",
+          "Concordia Publishing",
+          "Concordia Publishing House"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Concordia Pub House"
+      },
+      {
+        "from": [
+          "Concordia Pub House",
+          "Concordia Publishing House"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Concordia Pub House"
+      },
+      {
+        "from": [
+          "WaterBrook",
+          "WaterBrook Press"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "WaterBrook"
+      },
+      {
+        "from": [
+          "Baker Books",
+          "Baker Book House"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Baker Books"
+      },
+      {
+        "from": [
+          "Standard Publishing",
+          "Standard Pub"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Standard Publishing"
+      },
+      {
+        "from": [
+          "Concordia Publishing",
+          "Concordia Publishing House"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Concordia Pub House"
+      }
+    ],
+    "description": "Mass edit cells in column idb_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "idb_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Moody Publishers",
+          "Moody Pub"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Moody Publishers"
+      }
+    ],
+    "description": "Mass edit cells in column idb_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "idb_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Urban Spirit!",
+          "Urban Spirit! Publishing and Media Company"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Urban Spirit!"
+      }
+    ],
+    "description": "Mass edit cells in column idb_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "idb_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Sparkhouse Family",
+          "Sparkhouse Press"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Sparkhouse"
+      },
+      {
+        "from": [
+          "Tyndale House",
+          "Tyndale Kids"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Tyndale House"
+      },
+      {
+        "from": [
+          "Usborne Books",
+          "Usborne Pub Ltd"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Usborne"
+      }
+    ],
+    "description": "Mass edit cells in column idb_publisher_clustered"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "idb_publisher_clustered",
+          "expression": "value",
+          "columnName": "idb_publisher_clustered",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Regina Press Malhame & Company",
+                "l": "Regina Press Malhame & Company"
+              }
+            },
+            {
+              "v": {
+                "v": "Regina Pr",
+                "l": "Regina Pr"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "idb_publisher_clustered",
+    "expression": "jython:return \"Regina Press\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column idb_publisher_clustered using expression jython:return \"Regina Press\""
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ol_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Lion Hudson PLC"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Lion Hudson"
+      }
+    ],
+    "description": "Mass edit cells in column ol_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "idb_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "B&H Kids"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "B&H"
+      }
+    ],
+    "description": "Mass edit cells in column idb_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ol_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "B&H Kids"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "B&H"
+      }
+    ],
+    "description": "Mass edit cells in column ol_publisher_clustered"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "ol_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "B&H Publishing Group"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "B&H"
+      }
+    ],
+    "description": "Mass edit cells in column ol_publisher_clustered"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "ol_publisher_clustered",
+          "expression": "value",
+          "columnName": "ol_publisher_clustered",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Baker Book House",
+                "l": "Baker Book House"
+              }
+            },
+            {
+              "v": {
+                "v": "Baker Publishing Group",
+                "l": "Baker Publishing Group"
+              }
+            },
+            {
+              "v": {
+                "v": "Baker Pub Group",
+                "l": "Baker Pub Group"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "idb_publisher_clustered",
+    "expression": "jython:return \"Baker\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column idb_publisher_clustered using expression jython:return \"Baker\""
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "ol_publisher_clustered",
+          "expression": "value",
+          "columnName": "ol_publisher_clustered",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Baker Book House",
+                "l": "Baker Book House"
+              }
+            },
+            {
+              "v": {
+                "v": "Baker Publishing Group",
+                "l": "Baker Publishing Group"
+              }
+            },
+            {
+              "v": {
+                "v": "Baker Pub Group",
+                "l": "Baker Pub Group"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "ol_publisher_clustered",
+    "expression": "jython:return \"Baker\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column ol_publisher_clustered using expression jython:return \"Baker\""
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "idb_publisher_clustered",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Augsburg Fortress Pub"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Augsburg Fortress"
+      }
+    ],
+    "description": "Mass edit cells in column idb_publisher_clustered"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "ol_publisher_clustered",
+    "expression": "jython:return value",
+    "onError": "set-to-blank",
+    "newColumnName": "publisher",
+    "columnInsertIndex": 13,
+    "description": "Create column publisher at index 13 based on column ol_publisher_clustered using expression jython:return value"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "publisher",
+    "index": 12,
+    "description": "Move column publisher to position 12"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Barbour Pub."
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Barbour"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "publisher",
+          "expression": "value",
+          "columnName": "publisher",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Book Sales",
+                "l": "Book Sales"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "jython:return \"Chartwell House\"",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column publisher using expression jython:return \"Chartwell House\""
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Broadman & Holman Publishers"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Broadman & Holman"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Christian Art Gifts"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Christian Art Kids"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "David Cook"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "David C Cook"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Dial Books for Young Readers"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Dial Books"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "DK Pub."
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "DK"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Dorling Kindersley"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "DK"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Eerdmans Books for Young Readers"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Eerdmans"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Ideals Children's Books"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Ideals"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Not Avail"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Moody Press"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Moody"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Moody Publishers"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Moody"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Scandinavia Publishing House,Denmark"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Scandinavia Publishing Hous"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Scandinavia Publishing Hous"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Scandinavia Publishing House"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Regina Books"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Regina"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Regina Press Malhame & Company"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Regina"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "T. Nelson Publishers"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "T. Nelson"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "T. Nelson"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Thomas Nelson"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Nelson Incorporated, Thomas"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Thomas Nelson"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Parragon Inc"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Parragon"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Testament"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Testament Books"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "publisher",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Urban Spirit"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "Urban Spirit!"
+      }
+    ],
+    "description": "Mass edit cells in column publisher"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "text",
+          "name": "ol_pages",
+          "columnName": "ol_pages",
+          "query": "",
+          "mode": "regex",
+          "caseSensitive": false,
+          "invert": false
+        },
+        {
+          "type": "list",
+          "name": "ol_pages",
+          "expression": "value",
+          "columnName": "ol_pages",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [],
+          "selectBlank": true,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "baseColumnName": "idb_pages",
+    "expression": "jython:return value",
+    "onError": "set-to-blank",
+    "newColumnName": "pages",
+    "columnInsertIndex": 24,
+    "description": "Create column pages at index 24 based on column idb_pages using expression jython:return value"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "pages",
+    "index": 23,
+    "description": "Move column pages to position 23"
+  },
+  {
+    "op": "core/column-move",
+    "columnName": "pages",
+    "index": 22,
+    "description": "Move column pages to position 22"
+  }
+]
